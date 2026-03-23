@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #dfe9f3, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Main Container */
+.container {
+  text-align: center;
+  margin-top: 40px;
+  width: 500px;
+}
+
+/* Form Box */
+.form-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* Checkbox labels */
+label {
+  display: block;
+  margin: 5px;
+  font-size: 14px;
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: darkblue;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: blue;
+}
+
+/* Display Card */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+/* Headings */
+h1 {
+  color: darkblue;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+h4 {
+  margin-top: 10px;
+}
