@@ -11,51 +11,98 @@ function FormComponent({ onSubmit }) {
   const subjectOptions = ["HTML", "CSS", "JavaScript", "React"];
 
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   }
 
   function handleCheckbox(e) {
-    const value = e.target.value;
-
-    if (e.target.checked) {
-      setForm({ ...form, subjects: [...form.subjects, value] });
-    } else {
-      setForm({
-        ...form,
-        subjects: form.subjects.filter((s) => s !== value)
-      });
-    }
+    const { value, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      subjects: checked
+        ? [...prev.subjects, value]
+        : prev.subjects.filter((subject) => subject !== value)
+    }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!form.name || !form.email) {
-      alert("Fill all fields");
+      alert("Please fill in the name and email fields.");
       return;
     }
-
     onSubmit(form);
   }
 
   return (
     <form onSubmit={handleSubmit} className="form-box">
-      <h2>Student Form</h2>
+      <div className="form-heading">
+        <span className="form-title">Student Enrollment</span>
+        <p className="form-subtitle">
+          Use the form below to capture student details and subjects.
+        </p>
+      </div>
 
-      <input type="text" name="name" placeholder="Name" onChange={handleChange} />
-      <input type="email" name="email" placeholder="Email" onChange={handleChange} />
-      <input type="text" name="course" placeholder="Course" onChange={handleChange} />
-
-      <h4>Select Subjects:</h4>
-
-      {subjectOptions.map((sub, index) => (
-        <label key={index}>
-          <input type="checkbox" value={sub} onChange={handleCheckbox} />
-          {sub}
+      <div className="field-row">
+        <label className="field-label">
+          Name
+          <input
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter student name"
+            className="field-input"
+          />
         </label>
-      ))}
 
-      <button type="submit">Submit</button>
+        <label className="field-label">
+          Email
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Enter student email"
+            className="field-input"
+          />
+        </label>
+      </div>
+
+      <label className="field-label">
+        Course
+        <input
+          type="text"
+          name="course"
+          value={form.course}
+          onChange={handleChange}
+          placeholder="Enter course name"
+          className="field-input"
+        />
+      </label>
+
+      <div className="field-label checkbox-group">
+        <span>Select subjects</span>
+        <div className="checkbox-grid">
+          {subjectOptions.map((sub) => (
+            <label key={sub} className="checkbox-chip">
+              <input
+                type="checkbox"
+                value={sub}
+                checked={form.subjects.includes(sub)}
+                onChange={handleCheckbox}
+              />
+              {sub}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="button-row">
+        <button type="submit" className="primary-button">
+          Submit Student
+        </button>
+      </div>
     </form>
   );
 }

@@ -1,18 +1,40 @@
 function Display({ data }) {
   return (
-    <div className="card">
-      <h2>Student Details</h2>
+    <div className="display-card">
+      <div className="display-header">
+        <span className="display-pill">Live preview</span>
+        <h2>Student Summary</h2>
+      </div>
 
-      <p><b>Name:</b> {data.name}</p>
-      <p><b>Email:</b> {data.email}</p>
-      <p><b>Course:</b> {data.course}</p>
+      <div className="detail-grid">
+        <div className="detail-item">
+          <span className="detail-label">Name</span>
+          <strong>{data.name}</strong>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Email</span>
+          <strong>{data.email}</strong>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Course</span>
+          <strong>{data.course || "Not specified"}</strong>
+        </div>
+      </div>
 
-      <h4>Subjects:</h4>
-      <ul>
-        {data.subjects.map((sub, index) => (
-          <li key={index}>{sub}</li>
-        ))}
-      </ul>
+      <div className="subject-section">
+        <h3>Subjects</h3>
+        <div className="subject-pill-row">
+          {data.subjects.length > 0 ? (
+            data.subjects.map((subject, index) => (
+              <span key={index} className="subject-pill">
+                {subject}
+              </span>
+            ))
+          ) : (
+            <span className="subject-empty">No subjects selected</span>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
